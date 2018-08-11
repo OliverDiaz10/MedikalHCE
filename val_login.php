@@ -15,6 +15,7 @@ if (isset($_POST["txtUserName"]) && isset($_POST["txtClave"])){
     if ($lobUsuario->getEstado() == "A" && $ClaveUsuario == $lobUsuario->getClave()){
         $_SESSION["SSValida"] = 1;
         $_SESSION["SSHora"] = time();
+        $_SESSION["SSIdPersona"] = $lobUsuario->getCodigoPersona();
         header('location:src/admin/HCE-Main.php');
     }
     else{

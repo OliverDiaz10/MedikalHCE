@@ -73,6 +73,7 @@ $pUserName = $_SESSION['SSUserName'];
                       <h4 class="underline">Información Personal</h4>
                     </div>
                   </div>
+<!--
                   <div class="row">
                     <div class="col-md-2 col-sm-2">
                       <label class="form-label">* Tipo Identificación:</label>
@@ -83,6 +84,7 @@ $pUserName = $_SESSION['SSUserName'];
                       </select>
                     </div>
                   </div>
+-->
                   <div class="row">
                     <div class="col-md-2 col-sm-2">
                       <label class="form-label">* Num. Identificación:</label>
@@ -93,18 +95,19 @@ $pUserName = $_SESSION['SSUserName'];
                   </div>
                   <div class="row">
                     <div class="col-md-2 col-sm-2">
-                      <label class="form-label">* Primer Nombre:</label>
+                      <label class="form-label">* Nombres:</label>
                     </div>
                     <div class="col-md-4 col-sm-4">
                       <input type="text" class="form-control" value="Johnny" disabled="disabled">
                     </div>
                     <div class="col-md-2 col-sm-2">
-                      <label class="form-label">Segundo Nombre:</label>
+                      <label class="form-label">Apellidos:</label>
                     </div>
                     <div class="col-md-4 col-sm-4">
-                      <input type="text" class="form-control" value="Andrés" disabled="disabled">
+                      <input type="text" class="form-control" value="Calderón" disabled="disabled">
                     </div>
                   </div>
+<!--
                   <div class="row">
                     <div class="col-md-2 col-sm-2">
                       <label class="form-label">* Apellido Paterno:</label>
@@ -119,6 +122,7 @@ $pUserName = $_SESSION['SSUserName'];
                       <input type="text" class="form-control" value="Ruiz" disabled="disabled">
                     </div>
                   </div>
+-->
                   <div class="row">
                     <div class="col-md-2 col-sm-2">
                       <label class="form-label">* Fecha Nacimiento:</label>
@@ -145,6 +149,14 @@ $pUserName = $_SESSION['SSUserName'];
                       </select>
                     </div>
                   </div>
+                  <div class="row">
+                    <div class="col-md-2 col-sm-2">
+                      <label class="form-label">Nacionalidad:</label>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                      <input type="text" class="form-control" value="Ecuatoriana" disabled="disabled">
+                    </div>
+                  </div>
                   <div class="row"><p></p></div>
                   <div class="row">
                     <div class="col-md-12 col-sm-12">
@@ -166,12 +178,14 @@ $pUserName = $_SESSION['SSUserName'];
                     <div class="col-md-4 col-sm-4">
                       <input type="text" class="form-control" value="042125383" disabled="disabled">
                     </div>
+<!--
                     <div class="col-md-2 col-sm-2">
                       <label class="form-label">* Celular:</label>
                     </div>
                     <div class="col-md-4 col-sm-4">
                       <input type="text" class="form-control" value="0992345871" disabled="disabled">
                     </div>
+-->
                   </div>
                   <div class="row">
                     <div class="col-md-2 col-sm-2">
@@ -181,14 +195,7 @@ $pUserName = $_SESSION['SSUserName'];
                       <input type="email" class="form-control" value="jcalderon@hotmail.com" disabled="disabled">
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col-md-2 col-sm-2">
-                      <label class="form-label">Nacionalidad:</label>
-                    </div>
-                    <div class="col-md-4 col-sm-4">
-                      <input type="text" class="form-control" value="Ecuatoriana" disabled="disabled">
-                    </div>
-                  </div>
+<!--
                   <div class="row">
                     <div class="col-md-2 col-sm-2">
                       <label class="form-label">País Residencia:</label>
@@ -207,6 +214,8 @@ $pUserName = $_SESSION['SSUserName'];
                       </select>
                     </div>
                   </div>
+-->
+<!--
                   <div class="row"><p></p></div>
                   <div class="row">
                     <div class="col-md-12 col-sm-12">
@@ -236,6 +245,7 @@ $pUserName = $_SESSION['SSUserName'];
                       <input type="password" class="form-control" disabled="disabled">
                     </div>
                   </div>
+-->
 
                   <div class="row"><p></p></div>
                   <div class="row">
