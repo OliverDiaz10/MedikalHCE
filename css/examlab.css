@@ -1,0 +1,56 @@
+/*=============================================*/
+/*---------------------------------------------
+					 Examenes Start 
+-----------------------------------------------*/
+#examen-form {
+  overflow: hidden;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  height: 500px;
+}
+#examen-form p{
+  padding-top: 0px;
+  text-align: right;
+}
+#examen-form .block form .form-group {
+  padding-bottom: 0px;
+  margin: 0px;
+}
+#examen-list {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+#examen-list td, #examen-list th {
+    border: 1px solid #ddd;
+    padding: 4px;
+}
+#examen-list .col-left{
+    text-align: left;
+    padding-left: 10px;
+}
+#examen-list .col-center{
+    text-align: center;
+    align-content: center;
+}
+#examen-list tr:nth-child(even){background-color: #f2f2f2;}
+#examen-list tr:hover {background-color: #ddd;}
+#examen-list th {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: left;
+    background-color: #8B8B8B;
+    color: white;
+}
+.btn-grid {
+  padding: 8px 10px;
+  border: none;
+  background-color: #555555;
+  border-radius: 4px;
+  font-size: 10px;
+  color: white;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+/*---------------------------------------------
+					Examenenes Close 
+-----------------------------------------------*/

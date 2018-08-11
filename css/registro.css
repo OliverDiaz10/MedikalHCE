@@ -1,0 +1,42 @@
+/*=============================================*/
+/*---------------------------------------------
+					 Registro Start 
+-----------------------------------------------*/
+#registrarse-form {
+  overflow: hidden;
+  padding-top: 10px;
+  padding-bottom: 20px;
+}
+#registrarse-form p{
+  padding-top: 0px;
+  text-align: right;
+}
+#registrarse-form .block form .form-group {
+  padding-bottom: 0px;
+  margin: 0px;
+}
+#registrarse-form .block form .form-group .row{
+  padding-bottom: 5px;
+  margin: 0px;
+}
+#registrarse-form .block form .form-group .form-label {
+  padding-top: 5px;
+  height: 30px;
+  width: 150px;
+}
+#registrarse-form .block form .form-group .form-control {
+  background: #F6F8F0;
+  height: 30px;
+  border: 1px solid #EEF2F6;
+  box-shadow: none;
+  width: 100%;
+}
+.note-form{
+  font-size: 12px;
+  padding: 0px;
+  align-content: left;
+  color: #00f;
+}
+/*---------------------------------------------
+					Registro Close 
+-----------------------------------------------*/

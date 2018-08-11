@@ -1,0 +1,42 @@
+/*=============================================*/
+/*---------------------------------------------
+					 Registro Start 
+-----------------------------------------------*/
+#historia-form {
+  overflow: hidden;
+  padding-top: 10px;
+  padding-bottom: 20px;
+}
+#historia-form p{
+  padding-top: 0px;
+  text-align: right;
+}
+#historia-form .block form .form-group {
+  padding-bottom: 0px;
+  margin: 0px;
+}
+#historia-form .block form .form-group .row{
+  padding-bottom: 0px;
+  margin: 0px;
+}
+#historia-form .block form .form-group .form-label {
+  padding-top: 5px;
+  height: 30px;
+  width: 100%;
+}
+#historia-form .block form .form-group .form-control {
+  background: #F6F8F0;
+  height: 25px;
+  border: 1px solid #EEF2F6;
+  box-shadow: none;
+  width: 100%;
+}
+#historia-form .block form .form-group .form-control-area {
+  background: #F6F8F0;
+  border: 1px solid #EEF2F6;
+  box-shadow: none;
+  width: 100%;
+}
+/*---------------------------------------------
+					Registro Close 
+-----------------------------------------------*/
