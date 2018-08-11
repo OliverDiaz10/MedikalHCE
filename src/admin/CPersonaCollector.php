@@ -7,7 +7,7 @@ class CPersonaCollector extends Collector
         $rows = self::$db->getRows("select * from public.mg_personas");
         $arrayData = array();
         foreach ($rows as $i){
-            $aux = new CMgPersona($i{'codigo_persona'}, $i{'numero_identificacion'}, $i{'nombres'}, $i{'apellidos'}, $i{'sexo'}, $i{'nacionalidad'}, $i{'fecha_nacimiento'});
+            $aux = new CMgPersona($i{'codigo_persona'}, $i{'numero_identificacion'}, $i{'nombres'}, $i{'apellidos'}, $i{'sexo'}, $i{'nacionalidad'}, $i{'fecha_nacimiento'}, $i{'direccion'}, $i{'telefono'}, $i{'correo_electronico'}, $i{'estado_civil'});
             array_push($arrayData, $aux);
         }
         return $arrayData;
@@ -16,7 +16,7 @@ class CPersonaCollector extends Collector
     function selectPK($codigo_persona){
         $row = self::$db->getRow("select * from public.mg_personas where codigo_persona = ?", array("{$codigo_persona}"));
         
-        $lobPersona = new CMgPersona($row{'codigo_persona'}, $row{'numero_identificacion'}, $row{'nombres'}, $row{'apellidos'}, $row{'sexo'}, $row{'nacionalidad'}, $row{'fecha_nacimiento'});
+        $lobPersona = new CMgPersona($row{'codigo_persona'}, $row{'numero_identificacion'}, $row{'nombres'}, $row{'apellidos'}, $row{'sexo'}, $row{'nacionalidad'}, $row{'fecha_nacimiento'}, $row{'direccion'}, $row{'telefono'}, $row{'correo_electronico'}, $row{'estado_civil'});
         
         return $lobPersona;
     }

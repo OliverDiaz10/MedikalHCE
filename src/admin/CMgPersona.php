@@ -8,8 +8,12 @@ class CMgPersona
     private $sexo;
     private $nacionalidad;
     private $fechaNacimiento;
+    private $direccion;
+    private $telefono;
+    private $correoElectronico;
+    private $estadoCivil;
   
-     function __construct($codigo_persona, $numero_identificacion, $pstNombres, $pstApellidos, $pchSexo, $pstNacionalidad, $pdaFechaNacimiento) {
+     function __construct($codigo_persona, $numero_identificacion, $pstNombres, $pstApellidos, $pchSexo, $pstNacionalidad, $pdaFechaNacimiento, $pstDireccion, $pstTelefono, $pstCorreo, $pchEstadoCivil) {
        $this->codigo_persona = $codigo_persona;
        $this->numero_identificacion = $numero_identificacion;
        $this->nombres = $pstNombres;
@@ -17,6 +21,10 @@ class CMgPersona
        $this->sexo = $pchSexo;
        $this->nacionalidad = $pstNacionalidad;
        $this->fechaNacimiento = $pdaFechaNacimiento;
+       $this->direccion = $pstDireccion;
+       $this->telefono = $pstTelefono;
+       $this->correoElectronico = $pstCorreo;
+       $this->estadoCivil = $pchEstadoCivil;
       }
      
      function setCodigo_Persona($codigo_persona){
@@ -67,6 +75,34 @@ class CMgPersona
      function getFechaNacimiento(){
        return $this->fechaNacimiento;
      }
-     
+
+     function setDireccion($pstDireccion){
+       $this->direccion = $pstDireccion;
+     }
+     function getDireccion(){
+       return $this->direccion;
+     }
+
+     function setTelefono($pstTelefono){
+       $this->telefono = $pstTelefono;
+     }
+     function getTelefono(){
+       return $this->telefono;
+     }
+
+     function setCorreoElectronico($pstCorreo){
+       $this->correoElectronico = $pstCorreo;
+     }
+     function getCorreoElectronico(){
+       return $this->correoElectronico;
+     }
+
+     function setEstadoCivil($pchEstadoCivil){
+       $this->estadoCivil = $pchEstadoCivil;
+     }
+     function getEstadoCivil(){
+       return $this->estadoCivil;
+     }
+
 }
 ?> 
