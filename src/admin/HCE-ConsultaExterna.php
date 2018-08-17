@@ -5,6 +5,7 @@ if (mVerificaSesion() != 1){
     header('location:/fault.php');
 }
 $pUserName = $_SESSION['SSUserName'];
+$pID = $_SESSION["SSIdPersona"];
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -70,7 +71,8 @@ $pUserName = $_SESSION['SSUserName'];
         <div class="block">
           <form action="HCE-Main.php" method="POST">
               <div class="row"></div>
-              <table id="examen-list">
+              <table id="examen-list" class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
                 <tr>
                   <th class="col-center">Fecha Consulta</th>
                   <th class="col-left">Unidad Médica</th>
@@ -78,46 +80,36 @@ $pUserName = $_SESSION['SSUserName'];
                   <th class="col-left">Médico Tratante</th>
                   <th class="col-center">Detalle</th>
                 </tr>
-                <tr>
-                  <td class="col-center">04/01/2018</td>
-                  <td class="col-left">Hospital Luis Vernaza</td>
-                  <td class="col-left">Medicina General</td>
-                  <td class="col-left">Dr. Johnny Cabezas</td>
-                  <td class="col-center"><input type="button" id="btnDetalle1" class="btn-grip" value="..." data-type="zoomin"></td>
-                </tr>
-                <tr>
-                  <td class="col-center">20/12/2017</td>
-                  <td class="col-left">Hospital Luis Vernaza</td>
-                  <td class="col-left">Gastroenterología</td>
-                  <td class="col-left">Dr. Marco Vintimilla</td>
-                  <td class="col-center"><input type="button" id="btnDetalle2" class="btn-grip" value="..." data-type="zoomin"></td>
-                </tr>
-                <tr>
-                  <td class="col-center">05/02/2017</td>
-                  <td class="col-left">Clínica Kennedy Alborada</td>
-                  <td class="col-left">Urología</td>
-                  <td class="col-left">Dr. Julio Vintimilla</td>
-                  <td class="col-center">
-                      <input type="button" id="btnDetalle3" class="btn-grip" value="..." data-type="zoomin"></td>
-                </tr>
-                <tr>
-                  <td class="col-center">15/10/2016</td>
-                  <td class="col-left">Clínica San Francisco</td>
-                  <td class="col-left">Oftalmología</td>
-                  <td class="col-left">Dr. Héctor Carrillo</td>
-                  <td class="col-center"><input type="button" id="btnDetalle4" class="btn-grip" value="..." data-type="zoomin"></td>
-                </tr>
+                  </thead>
+                  <tbody>
+                <?php
+                  include_once("CAtencionConsultasCollector.php");
+                  include_once("CPersonaCollector.php");
+                  include_once("CRegIstitucionCollector.php");
+                  $objeto = new CAtencionConsultasCollector();
+                  $objetoP = new CPersonaCollector();
+                  $objetoI = new CRegIstitucionCollector();
+                  $array = $objeto->selectID($pID);
+                  foreach($array as $c){
+                      echo "<tr>";
+                      echo "<td>". $c->getFechaAtencion() . "</td>";
+                      $inst = $objetoI->selectPK($c->getCodigoInstitucion());
+                      echo "<td>". $inst->getNombre()  . "</td>";
+                      echo "<td>". $c->getEspecialidad() . "</td>";
+                      $perso = $objetoP->selectPK($c->getCodigoMedico());
+                      echo "<td>". $perso->getNombres() . " ". $perso->getApellidos()."</td>";
+                      $id = $c->getNumeroAtencion(); 
+                      #$id = $c->getIdServicioImagen();
+                      #echo "<td><a href='editarIServicioPa.php?id=$id'><button class='material-icons button2 edit'>edit</button></a></td>";
+                      #echo "<td><a href='eliminarIServicio.php?id=$id'><button class='material-icons button2 delete'>delete</button></a></td>";
+                      echo "<td class='col-center'><a href='#' onclick=window.open('formulario.php?id=$id','ventana','top=200,left=460,width=500,height=330,scrollbars=NO,menubar=NO,resizable=NO,titlebar=NO,status=NO');return false>"."<input type='button' id='btnDetalle1' class='btn-grip' value='...' data-type='zoomin'></a></td>";
+                     # echo "<a href='ventana.php' target='_blank' onClick='window.open(this.href, this.target, 'width=XXX,height=YYY'); return false;'>"."Click Aquí"."</a>";
+                      echo "</tr>";
+                  }
+                ?>
+               
+                  </tbody>
               </table>
-              <div class="overlay-container">
-                <div class="window-container zoomin">
-                    <h3>Detalles de consulta</h3>
-                    <br><b>Diagnóstico:</b>  Enfermedad general<br/>
-                    <br><b>Tratamiento:</b>  Administración de antibióticos<br/>
-                    <br><b>Prescripción:</b>  Paracetamol<br/>
-                    <span class="close">Cerrar</span>
-                </div>
-              </div>
-
               <div class="row"><p></p></div>
               <div class="row">
                 <div class="col-md-10 col-sm-10"></div>

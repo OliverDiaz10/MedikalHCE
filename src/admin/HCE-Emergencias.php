@@ -5,6 +5,7 @@ if (mVerificaSesion() != 1){
     header('location:/fault.php');
 }
 $pUserName = $_SESSION['SSUserName'];
+$pID = $_SESSION["SSIdPersona"];
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -68,100 +69,51 @@ $pUserName = $_SESSION['SSUserName'];
         <div class="block">
           <form action="HCE-Main.php" method="POST">
             <div class="form-group">
+              <?php
+                include_once("CRegAtencionEmergenciasCollector.php");
+                $objeto = new CRegAtencionEmergenciasCollector();
+                $array = $objeto->selectID($pID);
+              ?>
               <div class="row">
                 <div class="col-md-12 col-sm-12">
                   <h4 class="underline">Historial de Emergencias</h4>
                 </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-md-2 col-sm-2">
-                <label class="form-label">Fecha:</label>
-              </div>
-              <div class="col-md-4 col-sm-4">
-                <label class="form-label">1 de Enero/2018</label>
-              </div>
-              <div class="col-md-2 col-sm-2">
-                <label class="form-label">Tipo de Emergencia:</label>
-              </div>
-              <div class="col-md-4 col-sm-4">
-                <label class="form-label">Femur Roto</label>
-              </div>
-            </div>
-            <div class="row">
-              <br>
-              <div class="col-md-2 col-sm-2">
-                <label class="form-label">Descripcion:</label>
-              </div>
-              <div class="col-md-4 col-sm-4">
-                <textarea name="comentarios" rows="5" cols="100">El pasiente se quebro las manos</textarea>
-              </div>
-            </div>
-            <div class="row"><p></p></div>
-            <div class="row">
-              <div class="col-md-12 col-sm-12"></div>
-            </div>
-           
-            <div class="row">
-              <div class="col-md-2 col-sm-2">
-                <label class="form-label">Fecha:</label>
-              </div>
-              <div class="col-md-4 col-sm-4">
-                <label class="form-label">1 de Enero/2018</label>
-              </div>
-
-              <div class="col-md-2 col-sm-2">
-                <label class="form-label">Tipo de Emergencia:</label>
-              </div>
-              <div class="col-md-4 col-sm-4">
-                <label class="form-label">Femur Roto</label>
-              </div>
-            </div>
-            
-            <div class="row">
-              <br>
-              <div class="col-md-2 col-sm-2">
-                <label class="form-label">Descripcion:</label>
-              </div>
-              <div class="col-md-4 col-sm-4">
-                <textarea name="comentarios" rows="5" cols="100">El pasiente se quebro las manos</textarea>
-              </div>
-            </div>
-
-            <div class="row"><p></p></div>
-            <div class="row">
-              <div class="col-md-12 col-sm-12"></div>
-            </div>
-
-            <div class="row">
-              <div class="col-md-2 col-sm-2">
-                <label class="form-label">Fecha:</label>
-              </div>
-              <div class="col-md-4 col-sm-4">
-                <label class="form-label">1 de Enero/2018</label>
-              </div>
-              <div class="col-md-2 col-sm-2">
-                <label class="form-label">Tipo de Emergencia:</label>
-              </div>
-              <div class="col-md-4 col-sm-4">
-                <label class="form-label">Femur Roto</label>
-              </div>
-            </div>
-            <div class="row">
-              <br>
-              <div class="col-md-2 col-sm-2">
-                <label class="form-label">Descripcion:</label>
-              </div>
-              <div class="col-md-4 col-sm-4">
-                <textarea name="comentarios" rows="5" cols="100">El pasiente se quebro las manos</textarea>
-              </div>
-            </div>
-            
-            <div class="row"><p></p></div>
-            <div class="row">
-              <div class="col-md-10 col-sm-10"></div>
-              <div class="col-md-2 col-sm-2">
-                <button class="btn btn-app">Regresar</button>
+              <?php
+                  foreach($array as $c){
+                      echo "<div class='row'>";
+                      echo "  <div class='col-md-1 col-sm-1'>";
+                      echo "    <label class='form-label'>Fecha:</label>";
+                      echo "  </div>";
+                      echo "  <div class='col-md-4 col-sm-4'>";
+                      echo "    <label class='form-label'>" . $c->getFechaAtencion() . "</label>";
+                      echo "  </div>";
+                      echo "  <div class='col-md-1 col-sm-1'>";
+                      echo "    <label class='form-label'>Gravedad:</label>";
+                      echo "  </div>";
+                      echo "  <div class='col-md-4 col-sm-4'>";
+                      echo "    <label class='form-label'>" . $c->getTipoEmergencia() . "</label>";
+                      echo "  </div>";
+                      echo "</div>";
+                      echo "<div class='row'>";
+                      echo "  <div class='col-md-1 col-sm-1'>";
+                      echo "    <label class='form-label'>Descripcion:</label>";
+                      echo "  </div>";
+                      echo "  <div class='col-md-4 col-sm-4'>";
+                      echo "    <textarea name='comentarios' rows='4' cols='124'>" . $c->getDiagnostico() . "</textarea>";
+                      echo "  </div>";
+                      echo "</div>";
+                      echo "<div class='row'><p></p></div>";
+                      echo "<div class='row'>";
+                      echo "  <div class='col-md-12 col-sm-12'></div>";
+                      echo "</div>";
+                    }
+                    ?>    
+              <div class="row">
+                <div class="col-md-10 col-sm-10"></div>
+                <div class="col-md-2 col-sm-2">
+                  <button class="btn btn-app">Regresar</button>
+                </div>
               </div>
             </div>
           </form>

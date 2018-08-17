@@ -20,6 +20,15 @@ class CRegAtencionEmergenciasCollector extends Collector
         
         return $lobAtencionEmergencias;
     }
+    function selectID($codigo){
+        $rows = self::$db->getRows("select * from public.hc_atencion_emergencias where codigo_persona = ?", array("{$codigo}"));
+        $arrayData = array();
+        foreach ($rows as $i){
+            $aux = new CHcAtencionEmergencias($i{'numero_atencion'}, $i{'codigo_persona'}, $i{'codigo_institucion'}, $i{'codigo_medico'}, $i{'fecha_atencion'}, $i{'tipo_emergencia'}, $i{'diagnostico'});
+            array_push($arrayData, $aux);
+        }
+        return $arrayData;
+    }
     
     function updateALL($numeroAtencion, $codigoPersona, $codigoInstitucion, $codigoMedico, $fechaAtencion, $tipoEmergencia, $diagnostico){
             $updaterow = self::$db->updateRow("UPDATE public.hc_atencion_emergencias SET codigo_persona = ?, codigo_institucion = ?, codigo_medico = ?, fecha_atencion = ?, tipo_emergencia = ?, diagnostico = ? WHERE numero_atencion = ?", array("{$codigoPersona}","{$codigoInstitucion}","{$codigoMedico}","{$fechaAtencion}","{$tipoEmergencia}","{$diagnostico}",$numeroAtencion));

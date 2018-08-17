@@ -5,6 +5,7 @@ if (mVerificaSesion() != 1){
     header('location:/fault.php');
 }
 $pUserName = $_SESSION['SSUserName'];
+$pID = $_SESSION["SSIdPersona"];
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -69,7 +70,7 @@ $pUserName = $_SESSION['SSUserName'];
                 <div class="form-group">
                   <div class="row">
                     <div class="col-md-12 col-sm-12">
-                      <p>*Campos Obligatorios</p>
+                      <!--<p>*Campos Obligatorios</p>-->
                       <h4 class="underline">Información Personal</h4>
                     </div>
                   </div>
@@ -85,26 +86,62 @@ $pUserName = $_SESSION['SSUserName'];
                     </div>
                   </div>
 -->
+                    <?php 
+                        include_once("CPersonaCollector.php");
+                        $objeto = new CPersonaCollector();
+                        $persona = $objeto->selectPK($pID);
+                        $numeroi = $persona->getNumero_Identificacion();
+                        $nombres = $persona->getNombres();
+                        $apellid = $persona->getApellidos();
+                        $fechana = $persona->getFechaNacimiento();
+
+                        $sexo = $persona->getSexo();
+                        if($sexo == "H"){
+                            $sexo = "Masculino";
+                        }else{
+                            $sexo = "Femenino";
+                        }
+
+                        $estado = $persona->getEstadoCivil();
+                        if($estado == "S"){
+                            $estado = "Soltero";
+                        }else{
+                            if($estado == "C"){
+                                $estado = "Casado";
+                            }else{
+                                if($estado == "D"){
+                                    $estado = "Divorciado";
+                                }else{
+                                    $estado = "Desconocido";
+                                }
+                            }
+                        }
+                        $nacional = $persona->getNacionalidad();
+                        $dir = $persona->getDireccion();
+                        $tel = $persona->getTelefono();
+                        $cor = $persona->getCorreoElectronico();
+                    
+                    ?>
                   <div class="row">
                     <div class="col-md-2 col-sm-2">
-                      <label class="form-label">* Num. Identificación:</label>
+                      <label class="form-label"> Num. Identificación:</label>
                     </div>
                     <div class="col-md-4 col-sm-4">
-                      <input type="text" class="form-control" value="0908045453" disabled="disabled">
+                      <input type="text" class="form-control" value="<?php echo $numeroi ?>" disabled="disabled">
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-2 col-sm-2">
-                      <label class="form-label">* Nombres:</label>
+                      <label class="form-label">Nombres:</label>
                     </div>
                     <div class="col-md-4 col-sm-4">
-                      <input type="text" class="form-control" value="Johnny" disabled="disabled">
+                      <input type="text" class="form-control" value="<?php echo $nombres ?>" disabled="disabled">
                     </div>
                     <div class="col-md-2 col-sm-2">
                       <label class="form-label">Apellidos:</label>
                     </div>
                     <div class="col-md-4 col-sm-4">
-                      <input type="text" class="form-control" value="Calderón" disabled="disabled">
+                      <input type="text" class="form-control" value="<?php echo $apellid ?>" disabled="disabled">
                     </div>
                   </div>
 <!--
@@ -125,28 +162,24 @@ $pUserName = $_SESSION['SSUserName'];
 -->
                   <div class="row">
                     <div class="col-md-2 col-sm-2">
-                      <label class="form-label">* Fecha Nacimiento:</label>
+                      <label class="form-label"> Fecha Nacimiento:</label>
                     </div>
                     <div class="col-md-4 col-sm-4">
-                      <input type="text" class="form-control" value="14/02/1990" disabled="disabled">
+                      <input type="text" class="form-control" value="<?php echo $fechana ?>" disabled="disabled">
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-2 col-sm-2">
-                      <label class="form-label">* Sexo:</label>
+                      <label class="form-label">Sexo:</label>
                     </div>
                     <div class="col-md-4 col-sm-4">
-                      <select name="cmbSexo" class="form-control">
-                        <option selected="selected" value="M" disabled="disabled">Masculino</option>
-                      </select>
+                      <input type="text" class="form-control" value="<?php echo $sexo ?>" disabled="disabled">
                     </div>
                     <div class="col-md-2 col-sm-2">
-                      <label class="form-label">* Estado Civil:</label>
+                      <label class="form-label">Estado Civil:</label>
                     </div>
                     <div class="col-md-4 col-sm-4">
-                      <select name="cmbEstadoCivil" class="form-control">
-                        <option selected="selected" value="S" disabled="disabled">Soltero</option>
-                      </select>
+                      <input type="text" class="form-control" value="<?php echo $estado ?>" disabled="disabled">
                     </div>
                   </div>
                   <div class="row">
@@ -154,7 +187,7 @@ $pUserName = $_SESSION['SSUserName'];
                       <label class="form-label">Nacionalidad:</label>
                     </div>
                     <div class="col-md-4 col-sm-4">
-                      <input type="text" class="form-control" value="Ecuatoriana" disabled="disabled">
+                      <input type="text" class="form-control" value="<?php echo $nacional ?>" disabled="disabled">
                     </div>
                   </div>
                   <div class="row"><p></p></div>
@@ -165,18 +198,18 @@ $pUserName = $_SESSION['SSUserName'];
                   </div>
                   <div class="row">
                     <div class="col-md-2 col-sm-2">
-                      <label class="form-label">* Dirección:</label>
+                      <label class="form-label">Dirección:</label>
                     </div>
                     <div class="col-md-4 col-sm-4">
-                      <input type="text" class="form-control" value="Sauces 3" disabled="disabled">
+                      <input type="text" class="form-control" value="<?php echo $dir ?>" disabled="disabled">
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-2 col-sm-2">
-                      <label class="form-label">* Teléfono:</label>
+                      <label class="form-label">Teléfono:</label>
                     </div>
                     <div class="col-md-4 col-sm-4">
-                      <input type="text" class="form-control" value="042125383" disabled="disabled">
+                      <input type="text" class="form-control" value="<?php echo $tel ?>" disabled="disabled">
                     </div>
 <!--
                     <div class="col-md-2 col-sm-2">
@@ -189,10 +222,10 @@ $pUserName = $_SESSION['SSUserName'];
                   </div>
                   <div class="row">
                     <div class="col-md-2 col-sm-2">
-                      <label class="form-label">* Correo Electrónico:</label>
+                      <label class="form-label">Correo Electrónico:</label>
                     </div>
                     <div class="col-md-4 col-sm-4">
-                      <input type="email" class="form-control" value="jcalderon@hotmail.com" disabled="disabled">
+                      <input type="email" class="form-control" value="<?php echo $cor ?>" disabled="disabled">
                     </div>
                   </div>
 <!--

@@ -5,6 +5,7 @@ if (mVerificaSesion() != 1){
     header('location:/fault.php');
 }
 $pUserName = $_SESSION['SSUserName'];
+$pIdPersona = $_SESSION['SSIdPersona'];
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -68,6 +69,13 @@ $pUserName = $_SESSION['SSUserName'];
         <div class="block">
           <form action="HCE-Main.php" method="POST">
             <div class="form-group">
+              <?php
+                include_once("CPersonaCollector.php");
+                include_once("CMgPersona.php");
+
+                $lobPersonaCollector = new CPersonaCollector();
+                $lobPersona = $lobPersonaCollector->selectPK($pIdPersona);
+              ?>
               <div class="row">
                 <div class="col-md-12 col-sm-12">
                   <h4 class="underline">Información Personal</h4>
@@ -77,50 +85,80 @@ $pUserName = $_SESSION['SSUserName'];
                 <div class="col-md-2 col-sm-2">
                   <label class="form-label">Identificación:</label>
                 </div>
+<!--
                 <div class="col-md-1 col-sm-1">
                   <input type="text" class="form-control" value="DNI" disabled>
                 </div>
+-->
                 <div class="col-md-2 col-sm-2">
-                  <input type="text" class="form-control" value="0919393256" disabled>
+                <?php
+                  echo "<input type='text' class='form-control' value='".$lobPersona->getNumero_Identificacion()."' disabled>"
+                ?>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-2 col-sm-2">
                   <label class="form-label">Apellidos:</label>
                 </div>
-                <div class="col-md-2 col-sm-2">
-                  <input type="text" class="form-control" value="DIAZ" disabled>
+                <div class="col-md-3 col-sm-3">
+                <?php
+                  echo "<input type='text' class='form-control' value='".$lobPersona->getApellidos()."' disabled>"
+                ?>
+<!--                  <input type="text" class="form-control" value="DIAZ" disabled>-->
                 </div>
+<!--
                 <div class="col-md-2 col-sm-2">
                   <input type="text" class="form-control" value="MOSQUERA" disabled>
                 </div>
-                <div class="col-md-1 col-sm-1"><p></p></div>
+-->
+                <div class="col-md-2 col-sm-2"><p></p></div>
                 <div class="col-md-2 col-sm-2">
                   <label class="form-label">Fecha Nacimiento:</label>
                 </div>
                 <div class="col-md-2 col-sm-2">
-                  <input type="text" class="form-control" value="01/02/1980" disabled>
+                <?php
+                  echo "<input type='text' class='form-control' value='".$lobPersona->getFechaNacimiento()."' disabled>"
+                ?>
+<!--                  <input type="text" class="form-control" value="01/02/1980" disabled>-->
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-2 col-sm-2">
                   <label class="form-label">Nombres:</label>
                 </div>
-                <div class="col-md-2 col-sm-2">
-                  <input type="text" class="form-control" value="OLIVER" disabled>
+                <div class="col-md-3 col-sm-3">
+                <?php
+                  echo "<input type='text' class='form-control' value='".$lobPersona->getNombres()."' disabled>"
+                ?>
+<!--                  <input type="text" class="form-control" value="OLIVER" disabled>-->
                 </div>
+<!--
                 <div class="col-md-2 col-sm-2">
                   <input type="text" class="form-control" value="MEDARDO" disabled>
                 </div>
-                <div class="col-md-1 col-sm-1"><p></p></div>
+-->
+                <div class="col-md-2 col-sm-2"><p></p></div>
                 <div class="col-md-2 col-sm-2">
                   <label class="form-label">Sexo:</label>
                 </div>
                 <div class="col-md-2 col-sm-2">
-                  <input type="text" class="form-control" value="MASCULINO" disabled>
+                <?php
+                  if ($lobPersona->getSexo() == "H"){
+                    echo "<input type='text' class='form-control' value='MASCULINO' disabled>";
+                  }else{
+                    echo "<input type='text' class='form-control' value='FEMENINO' disabled>";
+                  }
+                ?>
                 </div>
               </div>
               <div class="row"><p></p></div>
+              <?php
+                include_once("CResumClinicoCollector.php");
+                include_once("CHcResumenClinico.php");
+
+                $lobResumClinicoCollector = new CResumClinicoCollector();
+                $lobResumenClinico = $lobResumClinicoCollector->selectPK($pIdPersona);
+              ?>
               <div class="row">
                 <div class="col-md-7 col-sm-7">
                   <h4 class="underline">Resumen Clínico</h4>
@@ -134,7 +172,9 @@ $pUserName = $_SESSION['SSUserName'];
                   <label class="form-label">Enfermedades más Importantes:</label>
                 </div>
                 <div class="col-md-5 col-sm-5">
-                  <textarea class="form-control-area" rows="3" disabled>Amigdalitis / Faringitis.  Estrés Post-traumático</textarea>
+                <?php
+                  echo "<textarea class='form-control-area' rows='3' disabled>".$lobResumenClinico->getEnfermedadesImportantes()."</textarea>"
+                ?>
                 </div>
                 <div class="col-md-1 col-sm-1"><br><br><p style="font-size: 12px">Últ.3 Meses</p></div>
                 <div class="col-md-1 col-sm-1" style="text-align: center">
@@ -159,7 +199,9 @@ $pUserName = $_SESSION['SSUserName'];
                   <label class="form-label">Diagnósticos Recientes:</label>
                 </div>
                 <div class="col-md-5 col-sm-5">
-                  <textarea class="form-control-area" rows="3" disabled>Faringitis crónica con secreción.  Realizar examen de cultivo para determinar antibiótico requerido.</textarea>
+                <?php
+                  echo "<textarea class='form-control-area' rows='3' disabled>".$lobResumenClinico->getDiagnosticosRecientes()."</textarea>"
+                ?>
                 </div>
                 <div class="col-md-1 col-sm-1"><br><p style="font-size: 12px">Últ.6 Meses</p></div>
                 <div class="col-md-1 col-sm-1" style="text-align: center">
@@ -180,7 +222,9 @@ $pUserName = $_SESSION['SSUserName'];
                   <label class="form-label">Planes de Tratamiento Recientes:</label>
                 </div>
                 <div class="col-md-5 col-sm-5">
-                  <textarea class="form-control-area" rows="3" disabled>- Colocación de Ampolla de Larga Duración, más antiflamatorio y expectorante por 5 días. - Antibiótico y desinflamatorio por 5 días.</textarea>
+                <?php
+                  echo "<textarea class='form-control-area' rows='3' disabled>".$lobResumenClinico->getPlanesTratamiento()."</textarea>"
+                ?>
                 </div>
                 <div class="col-md-1 col-sm-1"><br><p style="font-size: 12px">Último Año</p></div>
                 <div class="col-md-1 col-sm-1" style="text-align: center">
@@ -207,7 +251,9 @@ $pUserName = $_SESSION['SSUserName'];
                   <label class="form-label">Prescripciones:</label>
                 </div>
                 <div class="col-md-8 col-sm-8">
-                  <textarea class="form-control-area" rows="3" disabled>Sin problema de alergias a fármacos</textarea>
+                <?php
+                  echo "<textarea class='form-control-area' rows='3' disabled>".$lobResumenClinico->getPrescripciones()."</textarea>"
+                ?>
                 </div>
               </div>
               <div class="row">
@@ -215,7 +261,9 @@ $pUserName = $_SESSION['SSUserName'];
                   <label class="form-label">Antecedentes Personales:</label>
                 </div>
                 <div class="col-md-8 col-sm-8">
-                  <textarea class="form-control-area" rows="3" disabled>Accidente de tránsito en año 2008.  Provocación de Estrés post-traumático complejo.  Exámenes de Imagen no evidenciaron trauma craneoencefálico.</textarea>
+                <?php
+                  echo "<textarea class='form-control-area' rows='3' disabled>".$lobResumenClinico->getAntecedentesPersonales()."</textarea>"
+                ?>
                 </div>
               </div>
               <div class="row">
@@ -223,7 +271,9 @@ $pUserName = $_SESSION['SSUserName'];
                   <label class="form-label">Antecedentes Familiares:</label>
                 </div>
                 <div class="col-md-8 col-sm-8">
-                  <textarea class="form-control-area" rows="3" disabled>Padres, hermanos y familiares directos no presentan enfermedades congénitas o de alto riesgo.</textarea>
+                <?php
+                  echo "<textarea class='form-control-area' rows='3' disabled>".$lobResumenClinico->getAntecedentesFamiliares()."</textarea>"
+                ?>
                 </div>
               </div>
 

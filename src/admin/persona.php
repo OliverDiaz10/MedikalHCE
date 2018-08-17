@@ -83,13 +83,13 @@ $pUserName = $_SESSION['SSUserName'];
                 <tr>
 
                 <th>ID</th>
-                 <th>Identificación</th>
+                <th>Identificación</th>
                 <th>Nombres</th>
-                 <th>Apellidos</th>
-                 <th>Sexo</th>
-                 <th>Nacionalidad</th>
-                 <th>Fecha Nacimiento</th>
-                 <th class="col-center"><a href="personaCreate.php" style="color:white">Crear</a></th>
+                <th>Apellidos</th>
+                <th>Sexo</th>
+                <th>Nacionalidad</th>
+                <th>Fecha Nacimiento</th>
+                <th class="col-center"><a href="personaCreate.php" style="color:white">Crear</a></th>
             
                 </tr>
 <!--************************************************************************************-->

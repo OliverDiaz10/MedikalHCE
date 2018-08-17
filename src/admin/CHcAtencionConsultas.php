@@ -8,8 +8,10 @@ class CHcAtencionConsultas
     private $fechaAtencion;
     private $especialidad;
     private $diagnostico;
+    private $tratamiento;
+    private $prescripcion;
     
-     function __construct($pinNumeroAtencion, $pinCodigoPersona, $pstCodigoInstitucion, $pinCodigoMedico, $pdtFechaAtencion, $pstEspecialidad, $pstDiagnostico) {
+     function __construct($pinNumeroAtencion, $pinCodigoPersona, $pstCodigoInstitucion, $pinCodigoMedico, $pdtFechaAtencion, $pstEspecialidad, $pstDiagnostico, $pstTratamiento, $pstPrescripcion) {
        $this->numeroAtencion = $pinNumeroAtencion;
        $this->codigoPersona = $pinCodigoPersona;
        $this->codigoInstitucion = $pstCodigoInstitucion;
@@ -17,7 +19,8 @@ class CHcAtencionConsultas
        $this->fechaAtencion = $pdtFechaAtencion;
        $this->especialidad = $pstEspecialidad;
        $this->diagnostico = $pstDiagnostico;
-
+       $this->tratamiento = $pstTratamiento;
+       $this->prescripcion = $pstPrescripcion;
      }
      
      function setNumeroAtencion($pinNumeroAtencion){
@@ -67,6 +70,20 @@ class CHcAtencionConsultas
      }
      function getDiagnostico(){
        return $this->diagnostico;
+     }
+
+     function setTratamiento($pstTratamiento){
+       $this->tratamiento = $pstTratamiento;
+     }
+     function getTratamiento(){
+       return $this->tratamiento;
+     }
+
+     function setPrescripcion($pstPrescripcion){
+       $this->prescripcion = $pstPrescripcion;
+     }
+     function getPrescripcion(){
+       return $this->prescripcion;
      }
 }
 ?> 

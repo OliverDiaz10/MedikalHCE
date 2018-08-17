@@ -9,6 +9,7 @@ if (mVerificaSesion() != 1){
     header('location:/fault.php');
 }
 $pUserName = $_SESSION['SSUserName'];
+$pIdPersona = $_SESSION['SSIdPersona'];
 
 if (isset($pUserName)){
     $lobRolUsuarioCollector = new CRolUsuarioCollector();
@@ -95,6 +96,13 @@ if (isset($pUserName)){
         <div class="block">
           <form>
             <div class="form-group">
+              <?php
+                include_once("CPersonaCollector.php");
+                include_once("CMgPersona.php");
+
+                $lobPersonaCollector = new CPersonaCollector();
+                $lobPersona = $lobPersonaCollector->selectPK($pIdPersona);
+              ?>
               <div class="row">
                 <div class="col-md-12 col-sm-12">
                   <h4 class="underline">Información del Usuario</h4>
@@ -105,14 +113,17 @@ if (isset($pUserName)){
                   <label class="form-label"> Nombres:</label>
                 </div>
                 <div class="col-md-4 col-sm-4">
-                  <label class="form-label"> Johnny Calderon</label>
+                <?php
+                  echo "<label class='form-label'>".$lobPersona->getNombres()." ".$lobPersona->getApellidos()."</label>"
+                ?>
                 </div>
-
                 <div class="col-md-2 col-sm-2">
                   <label class="form-label"> Correo Electrónico:</label>
                 </div>
                 <div class="col-md-4 col-sm-4">
-                  <label class="form-label"> johnny_calderon94@gmail.com</label>
+                <?php
+                  echo "<label class='form-label'>".$lobPersona->getCorreoElectronico()."</label>"
+                ?>
                 </div>
               </div>
               <div class="row">
@@ -120,14 +131,21 @@ if (isset($pUserName)){
                   <label class="form-label"> Identificación: </label>
                 </div>
                 <div class="col-md-4 col-sm-4">
-                  <label class="form-label"> 0912345678 </label>
+                <?php
+                  echo "<label class='form-label'>".$lobPersona->getNumero_Identificacion()."</label>"
+                ?>
                 </div>
-
                 <div class="col-md-2 col-sm-2">
                   <label class="form-label"> Sexo: </label>
                 </div>
                 <div class="col-md-4 col-sm-4">
-                  <label class="form-label"> Masculino</label>
+                <?php
+                  if ($lobPersona->getSexo() == "H"){
+                    echo "<label class='form-label'>MASCULINO</label>";
+                  }else{
+                    echo "<label class='form-label'>FEMENINO</label>";
+                  }
+                ?>
                 </div>
               </div>
 
